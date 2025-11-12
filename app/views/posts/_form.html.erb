@@ -1,0 +1,29 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div class="bg-red-100 p-2 mb-3">
+      <h2><%= pluralize(post.errors.count, "error") %> prevented saving:</h2>
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :title, class: "block font-semibold" %>
+    <%= form.text_field :title, class: "border rounded w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :content, class: "block font-semibold" %>
+    <%= form.text_area :content, class: "border rounded w-full h-40" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :tag_list, "Tags (comma-separated)" %>
+    <%= form.text_field :tag_list, class: "border rounded w-full" %>
+  </div>
+
+  <%= form.submit class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+<% end %>
